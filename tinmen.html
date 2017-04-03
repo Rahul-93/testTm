@@ -155,13 +155,7 @@ Parse.serverURL = 'https://pg-app-jim9ng9lizcvdtjjdldyw2wu8c7ytf.scalabl.cloud/1
                     <script id="sale" type="text/html">
                         <%    _.each(orders,function(order) { %>
                       <tr>
-                       
-                        <td class="v-align-middle semi-bold "><%= order.id %></td>
-                        <td class="v-align-middle"><%= order.createdAt %></td>
-                        <td class="v-align-middle"><%= order.get("chefs") %></td>
-                        <td class="v-align-middle"><%= order.get("email") %></td>
-                        <td class="v-align-middle"><%= order.get("phone") %></td>
-                      </tr>
+                   
                             <% }) %>
                         </script>
                         <script>
