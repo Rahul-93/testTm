@@ -122,6 +122,67 @@ Parse.serverURL = 'https://pg-app-jim9ng9lizcvdtjjdldyw2wu8c7ytf.scalabl.cloud/1
             </div>
             <!-- END PANEL -->
           </div>
+       <div class="container-fluid container-fixed-lg">
+            <!-- START PANEL -->
+            <div class="panel panel-transparent">
+              <div class="panel-heading">
+                <div class="panel-title">Table with Dynamic Rows
+                </div>
+                <div class="pull-right">
+                  <div class="col-xs-12">
+                    <button id="show-modal" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Add row
+                    </button>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="panel-body">
+                <table class="table table-hover demo-table-dynamic table-responsive-block" id="tableWithDynamicRows">
+                     <thead>
+                      <tr class="sorting">
+                
+                        <th>object Id</th>
+                        <th>created at</th>
+                        <th>chef</th>
+                        <th>email</th>
+                        <th>mobile</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    </table>
+                    <script id="sale" type="text/html">
+                        <%    _.each(orders,function(order) { %>
+                      <tr>
+                       
+                        <td class="v-align-middle semi-bold "><%= order.id %></td>
+                        <td class="v-align-middle"><%= order.createdAt %></td>
+                        <td class="v-align-middle"><%= order.get("chefs") %></td>
+                        <td class="v-align-middle"><%= order.get("email") %></td>
+                        <td class="v-align-middle"><%= order.get("phone") %></td>
+                      </tr>
+                            <% }) %>
+                        </script>
+                        <script>
+                            var tempTab = _.template($("#sale").html());
+
+                            var Order = Parse.Object.extend("Orders");
+                            var orderQuery = new Parse.Query(Order);
+                            var q = orderQuery.descending("chefs");
+                            q.find().then(function (results){
+
+                                var data = {};
+                                data.orders = results;
+
+                                $("table#tableWithDynamicRows tbody").html(tempTab(data));
+                            })
+                        </script>
+
+
+                </div>
+              </div>
+            </div>
      
     <!-- END OVERLAY -->
     <!-- BEGIN VENDOR JS -->
